@@ -1,0 +1,736 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Business, Health & Tawakkul Journal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,600;1,700&family=Amiri:wght@400;700&display=swap">
+<style>
+  :root{
+    --bg:#F8F8F7; --surface:#FFFFFF; --surface-2:#F3EEE8; --ink:#2C2220; --muted:#7E6961; --line:#E5DDD2;
+    --maroon:#550B14; --maroon-light:#711726; --maroon-deep:#3D0810; --maroon-soft:#F3E1E3;
+    --gold:#A8791F; --gold-soft:#F3E7CD; --green:#2C8C3E; --green-soft:#DFF0E2; --danger:#B8483A; --danger-soft:#F6E4E1;
+    --shadow: 0 1px 2px rgba(44,34,32,.05), 0 10px 28px rgba(44,34,32,.08);
+    --radius: 20px; --radius-sm: 12px; color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#181112; --surface:#231A1B; --surface-2:#2A1F20; --ink:#F2E9E4; --muted:#BBA9A0; --line:#3A2C2C;
+      --maroon:#C85A6B; --maroon-light:#D9798A; --maroon-deep:#7A2534; --maroon-soft:#3A1E22;
+      --gold:#D9AE5C; --gold-soft:#332715; --green:#5FCB86; --green-soft:#1E3324; --danger:#E28A7C; --danger-soft:#3A2420;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.35); color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#181112; --surface:#231A1B; --surface-2:#2A1F20; --ink:#F2E9E4; --muted:#BBA9A0; --line:#3A2C2C;
+    --maroon:#C85A6B; --maroon-light:#D9798A; --maroon-deep:#7A2534; --maroon-soft:#3A1E22;
+    --gold:#D9AE5C; --gold-soft:#332715; --green:#5FCB86; --green-soft:#1E3324; --danger:#E28A7C; --danger-soft:#3A2420;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.35); color-scheme: dark;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased;}
+  .display{font-family:'Cormorant Garamond',Georgia,serif;text-wrap:balance;}
+  button{font-family:inherit;} textarea,input{font-family:inherit;font-size:inherit;color:inherit;}
+  :focus-visible{outline:2px solid var(--maroon); outline-offset:2px;}
+  ::selection{background:var(--maroon-soft);}
+
+  .shell{max-width:520px;margin:0 auto;min-height:100vh;background:var(--bg);display:flex;flex-direction:column;position:relative;}
+  @media (min-width:560px){
+    body{background: color-mix(in srgb, var(--ink) 6%, var(--bg));}
+    .shell{margin:28px auto 56px;min-height:calc(100vh - 56px);border-radius:28px;box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--line);}
+  }
+  .eyebrow{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:600;}
+  .hero{position:relative;padding:34px 24px 30px;text-align:center;color:#fff;
+    background:linear-gradient(160deg, var(--maroon-light) 0%, var(--maroon) 45%, var(--maroon-deep) 100%); overflow:hidden;}
+  .hero-eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72);font-weight:600;margin-bottom:6px;}
+  .hero-script{font-family:'Playfair Display','Cormorant Garamond',Georgia,serif;font-style:italic;font-size:30px;line-height:1.2;margin:0;font-weight:700;letter-spacing:.01em;text-shadow:0 2px 10px rgba(0,0,0,.15);}
+  .hero-rule{width:64px;height:1px;background:rgba(255,255,255,.5);margin:14px auto;}
+  .hero-tag{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.72);font-weight:500;}
+  .sync-pill{position:absolute;top:14px;right:16px;font-size:10.5px;padding:5px 10px;border-radius:99px;background:rgba(255,255,255,.14);color:rgba(255,255,255,.85);display:flex;align-items:center;gap:5px;white-space:nowrap;border:1px solid rgba(255,255,255,.2);}
+  .sync-dot{width:6px;height:6px;border-radius:50%;background:#7BE29A;}
+  .sync-pill.saving .sync-dot{background:var(--gold);}
+  .sync-pill.offline .sync-dot{background:#E8A79A;}
+
+  .sheet{background:var(--surface);border-radius:26px 26px 0 0;flex:1;display:flex;flex-direction:column;box-shadow:0 -8px 24px rgba(44,34,32,.05);}
+  .sub-nav{display:flex;flex-wrap:wrap;gap:8px;padding:16px 20px;border-bottom:1px solid var(--line);}
+  .sub-pill{flex:none;border:1.6px solid var(--line);background:var(--surface);color:var(--ink);font-size:12.5px;font-weight:700;padding:9px 14px;border-radius:99px;cursor:pointer;white-space:nowrap;touch-action:manipulation;-webkit-tap-highlight-color:rgba(0,0,0,.08);transition:transform .1s ease;}
+  .sub-pill.active{background:var(--maroon);border-color:var(--maroon);color:#fff;}
+  .sub-pill:active{transform:scale(.94);}
+
+  .section-head{padding:20px 20px 4px;}
+  .section-head .eyebrow{color:var(--gold);}
+  .section-head h1{margin:4px 0 0;font-size:25px;color:var(--maroon);}
+  .section-head p{margin:6px 0 0;font-size:13px;color:var(--muted);line-height:1.5;}
+
+  main{flex:1;overflow-y:auto;padding:16px 20px 32px;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;}
+  @keyframes viewFadeIn{ from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:translateY(0);} }
+  main#view > *{animation:viewFadeIn .3s ease both;}
+  @media (prefers-reduced-motion: reduce){ main#view > *{animation:none;} }
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin-bottom:14px;}
+  .card h2{margin:0 0 10px;font-size:15px;font-weight:700;}
+  .card h3{margin:0 0 10px;font-size:14px;font-weight:700;color:var(--maroon);}
+  .card-sub{font-size:12.5px;color:var(--muted);margin:-4px 0 12px;line-height:1.5;}
+
+  .note-box{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);padding:13px 15px;margin-bottom:14px;}
+  .note-box .lbl{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--maroon);margin-bottom:5px;}
+  .note-box p{margin:0;font-size:13px;line-height:1.55;color:var(--ink);}
+
+  .rules-list{margin:0;padding-left:18px;font-size:13.5px;line-height:1.75;color:var(--ink);}
+
+  .q-block{margin-bottom:14px;}
+  .q-block:last-child{margin-bottom:0;}
+  .q-label{display:block;font-size:13px;font-weight:600;margin-bottom:7px;color:var(--ink);line-height:1.4;}
+  .journal-textarea{width:100%;min-height:64px;border:1px solid var(--line);background:var(--surface-2);border-radius:12px;
+    padding:11px 13px;font-size:14px;line-height:1.55;color:var(--ink);font-family:inherit;resize:vertical;box-sizing:border-box;}
+  .journal-textarea:focus{outline:none;border-color:var(--maroon);background:var(--surface);box-shadow:0 0 0 3px var(--maroon-soft);}
+  .journal-textarea.short{min-height:42px;}
+
+  .date-nav{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;margin:0 0 14px;background:var(--maroon-soft);border-radius:var(--radius-sm);}
+  .date-nav button{border:none;background:rgba(0,0,0,.06);color:var(--maroon);width:30px;height:30px;border-radius:50%;font-size:16px;font-weight:700;cursor:pointer;flex:none;touch-action:manipulation;}
+  .date-nav button:disabled{opacity:.3;cursor:default;}
+  .date-nav .lbl{flex:1;text-align:center;font-size:13.5px;font-weight:700;color:var(--maroon);}
+  .date-nav .lbl .sub{display:block;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--maroon);opacity:.65;margin-top:1px;}
+
+  .affirm-card{background:linear-gradient(160deg,var(--maroon) 0%,var(--maroon-deep) 100%);color:#F8F0EC;border:none;}
+  .affirm-card .eyebrow{color:#E7C9CE;}
+  .affirm-card .dua{font-family:'Amiri','Cormorant Garamond',serif;font-size:22px;line-height:2;margin:10px 0 8px;direction:rtl;text-align:right;}
+  .affirm-card .translit{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;line-height:1.5;color:#EBD9DB;margin-bottom:6px;}
+  .affirm-card .meaning{font-size:12.5px;color:#EBD9DB;line-height:1.5;}
+  .affirm-card .src{font-size:10.5px;color:#D8B3B9;text-transform:uppercase;letter-spacing:.06em;margin-top:8px;}
+  .affirm-card .extra{font-size:11px;color:#D8B3B9;line-height:1.5;margin-top:6px;font-style:italic;}
+
+  .final-card{background:linear-gradient(160deg,var(--maroon-light) 0%,var(--maroon) 55%,var(--maroon-deep) 100%);color:#fff;text-align:center;border:none;}
+  .final-card .big{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:20px;line-height:1.5;margin-bottom:14px;}
+  .final-card .note-box{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);text-align:left;}
+  .final-card .note-box .lbl{color:#F6D9A8;}
+  .final-card .note-box p{color:#F8F0EC;}
+  .final-card .close-line{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;line-height:1.8;margin-top:14px;color:#EBD9DB;}
+
+  .quote-card{background:var(--gold-soft);border:none;text-align:center;}
+  .quote-card p{margin:0;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:17px;line-height:1.55;color:var(--maroon);}
+
+  .group-title{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--gold);font-weight:700;margin:4px 2px 8px;}
+  .dua-num{font-size:10.5px;color:#D8B3B9;font-weight:700;}
+
+  .sched-table{width:100%;border-collapse:collapse;font-size:12px;overflow:hidden;border-radius:12px;}
+  .sched-table th{background:var(--maroon);color:#fff;text-align:left;padding:8px 10px;font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;font-weight:700;}
+  .sched-table td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;}
+  .sched-table tr:nth-child(even) td{background:var(--surface-2);}
+  .sched-table td:first-child{font-weight:700;color:var(--maroon);white-space:nowrap;}
+
+  .habit-row{margin-bottom:16px;}
+  .habit-row:last-child{margin-bottom:0;}
+  .habit-row .hlbl{font-size:13.5px;font-weight:700;color:var(--ink);}
+  .habit-row .hnote{font-size:11.5px;color:var(--muted);margin:1px 0 8px;}
+  .habit-toggles{display:flex;flex-wrap:wrap;gap:6px;}
+  .habit-dot{width:27px;height:27px;border-radius:50%;border:1.6px solid var(--line);background:var(--surface-2);cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:rgba(0,0,0,.08);padding:0;}
+  .habit-dot.done{background:var(--maroon);border-color:var(--maroon);}
+
+  [hidden]{display:none !important;}
+</style>
+
+<div class="shell">
+  <div class="hero">
+    <div class="sync-pill" id="syncPill"><span class="sync-dot"></span><span id="syncText">Saved</span></div>
+    <div class="hero-eyebrow" style="margin-top:22px">A Personal Journal</div>
+    <h1 class="hero-script">Business, Health<br>&amp; Tawakkul</h1>
+    <div class="hero-rule"></div>
+    <div class="hero-tag">Halal Wealth &middot; Protection &middot; Health &middot; Family &middot; Trust in Allah</div>
+  </div>
+  <div class="sheet">
+    <div class="sub-nav" id="subNav"></div>
+    <main id="view"></main>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  function pad(n){ return n<10?"0"+n:""+n; }
+  function dateKey(d){ return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate()); }
+  function parseYMD(s){ var p=s.split('-').map(Number); return new Date(p[0],p[1]-1,p[2]); }
+  function addDays(key, n){ var d=parseYMD(key); d.setDate(d.getDate()+n); return dateKey(d); }
+  function escapeHtml(s){ return (s||"").toString().replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+  var TODAY_KEY = dateKey(new Date());
+  function prettyDate(key){
+    var d = parseYMD(key);
+    var days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    var months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    return days[d.getDay()]+", "+months[d.getMonth()]+" "+d.getDate();
+  }
+
+  /* ================= CONTENT (from the uploaded Business, Health & Tawakkul PDF) ================= */
+
+  var AFFIRM = {
+    business: [
+      "I build my business through honesty, quality, and excellent service.",
+      "I seek halal income and ask Allah to place barakah in my work.",
+      "I make clear decisions and do not let pressure control me.",
+      "I build reliable relationships with trustworthy clients and suppliers.",
+      "I manage cash flow, capital, records, and risk carefully.",
+      "I can face a difficult business day without allowing it to take over my whole life.",
+      "My worth is not measured only by money."
+    ],
+    character: [
+      "I am disciplined, thoughtful, patient, and responsible.",
+      "I keep learning and remain open to correction.",
+      "I manage my time instead of allowing every request to control my day.",
+      "I communicate clearly and listen before reacting.",
+      "I can be ambitious without living in constant stress.",
+      "I make room for worship, health, rest, and loved ones.",
+      "I measure success by character and balance as well as achievement."
+    ],
+    health: [
+      "I treat my body as an amanah, a trust from Allah.",
+      "I exercise consistently and train safely.",
+      "I eat balanced meals and drink enough water.",
+      "I make sleep and recovery part of my plan.",
+      "I take breaks instead of working endlessly.",
+      "I pay attention to persistent symptoms and seek medical advice when needed."
+    ],
+    learning: [
+      "I read for at least 20 minutes when my schedule allows.",
+      "I learn about leadership, negotiation, finance, trade, and communication.",
+      "I make time for Islamic learning and Qur'an.",
+      "I take notes and apply useful ideas.",
+      "I ask questions and learn from experienced people."
+    ],
+    family: [
+      "I give my family focused attention without constantly checking business messages.",
+      "I listen to understand, not only to respond.",
+      "I communicate calmly and respectfully, even when tired.",
+      "I ask how my loved ones are doing and remember what matters to them.",
+      "I make time for meaningful conversations and shared moments.",
+      "I show appreciation through words and actions."
+    ]
+  };
+
+  var DUA_GROUPS = [
+    { title:"Protection and safety", duas:[
+      { title:"Ayat al-Kursi", arabic:"اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ",
+        translit:"Allahu la ilaha illa huwa al-hayyul-qayyum. La ta'khudhuhu sinatun wa la nawm. Lahu ma fis-samawati wa ma fil-ard...", meaning:"Allah, there is no deity except Him, the Ever-Living, the Sustainer of all. Neither drowsiness nor sleep overtakes Him. To Him belongs all that is in the heavens and earth. His knowledge and authority encompass all things, and preserving them does not tire Him. He is the Most High, the Most Great.",
+        source:"Qur'an 2:255", extra:"For full recitation, read the complete Arabic verse from a trusted mushaf; the transliteration above is abbreviated." },
+      { title:"Surah Al-Ikhlas, Al-Falaq, and An-Nas", arabic:"قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ",
+        translit:"Qul huwa Allahu ahad. Allahus-samad. Lam yalid wa lam yulad. Wa lam yakun lahu kufuwan ahad.", meaning:"Say: He is Allah, the One; Allah, the Eternal Refuge. He neither begets nor is born, nor is there any equivalent to Him.",
+        source:"Qur'an 112", extra:"Recite this surah, then Al-Falaq (113) and An-Nas (114); the three are commonly recited morning and evening and before sleep." },
+      { title:"Protection with Allah's perfect words", arabic:"أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ",
+        translit:"A'udhu bi kalimatillahit-tammati min sharri ma khalaq.", meaning:"I seek refuge in the perfect words of Allah from the evil of what He has created.", source:"Sahih Muslim 2708" }
+    ]},
+    { title:"Anxiety, worry, and sadness", duas:[
+      { title:"Seeking refuge from anxiety and grief", arabic:"اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْجُبْنِ وَالْبُخْلِ، وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ",
+        translit:"Allahumma inni a'udhu bika minal-hammi wal-hazan, wal-'ajzi wal-kasal, wal-jubni wal-bukhl, wa dala'id-dayni wa ghalabatir-rijal.", meaning:"O Allah, I seek refuge in You from anxiety and grief, from incapacity and laziness, from cowardice and miserliness, from the burden of debt, and from being overpowered by people.", source:"Sahih al-Bukhari 6369" },
+      { title:"Asking Allah for mercy and not to be left to myself", arabic:"يَا حَيُّ يَا قَيُّومُ، بِرَحْمَتِكَ أَسْتَغِيثُ",
+        translit:"Ya Hayyu ya Qayyum, bi rahmatika astaghith.", meaning:"O Ever-Living, O Sustainer, by Your mercy I seek help.", source:"Jami' at-Tirmidhi 3524" },
+      { title:"When something feels difficult", arabic:"اللَّهُمَّ لَا سَهْلَ إِلَّا مَا جَعَلْتَهُ سَهْلًا، وَأَنْتَ تَجْعَلُ الْحَزْنَ إِذَا شِئْتَ سَهْلًا",
+        translit:"Allahumma la sahla illa ma ja'altahu sahla, wa anta taj'alul-hazna idha shi'ta sahla.", meaning:"O Allah, nothing is easy except what You make easy, and You can make difficulty easy if You will.", source:"Reported in Ibn Hibban; commonly cited as a supplication for ease" }
+    ]},
+    { title:"Health, well-being, and healing", duas:[
+      { title:"Asking for well-being in the body", arabic:"اللَّهُمَّ عَافِنِي فِي بَدَنِي، اللَّهُمَّ عَافِنِي فِي سَمْعِي، اللَّهُمَّ عَافِنِي فِي بَصَرِي، لَا إِلَهَ إِلَّا أَنْتَ",
+        translit:"Allahumma 'afini fi badani, Allahumma 'afini fi sam'i, Allahumma 'afini fi basari, la ilaha illa Anta.", meaning:"O Allah, grant me well-being in my body. O Allah, grant me well-being in my hearing. O Allah, grant me well-being in my sight. There is no deity except You.", source:"Sunan Abi Dawud 5090" },
+      { title:"Asking for pardon and well-being", arabic:"اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ",
+        translit:"Allahumma inni as'aluka al-'afwa wal-'afiyata fid-dunya wal-akhirah.", meaning:"O Allah, I ask You for pardon and well-being in this world and the Hereafter.", source:"Sunan Abi Dawud 5074" },
+      { title:"Prophetic supplication for healing", arabic:"اللَّهُمَّ رَبَّ النَّاسِ، أَذْهِبِ الْبَأْسَ اشْفِ أَنْتَ الشَّافِي، لَا شِفَاءَ إِلَّا شِفَاؤُكَ، شِفَاءً لَا يُغَادِرُ سَقَمًا",
+        translit:"Allahumma Rabban-nas, adhhib al-ba's, ishfi Antash-Shafi, la shifa'a illa shifa'uk, shifa'an la yughadiru saqama.", meaning:"O Allah, Lord of mankind, remove the harm and heal. You are the Healer. There is no healing except Your healing, a healing that leaves no illness behind.", source:"Sahih al-Bukhari 5743; Sahih Muslim 2191" }
+    ]},
+    { title:"A good life and a good ending", duas:[
+      { title:"Asking for life when life is best", arabic:"اللَّهُمَّ أَحْيِنِي مَا كَانَتِ الْحَيَاةُ خَيْرًا لِي، وَتَوَفَّنِي إِذَا كَانَتِ الْوَفَاةُ خَيْرًا لِي",
+        translit:"Allahumma ahyini ma kanatil-hayatu khayran li, wa tawaffani idha kanatil-wafatu khayran li.", meaning:"O Allah, keep me alive as long as life is better for me, and cause me to die when death is better for me.", source:"Sahih al-Bukhari 5671; Sahih Muslim 2680" },
+      { title:"Asking for a good ending and protection from hardship", arabic:"اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ",
+        translit:"Allahumma inni as'aluka al-'afwa wal-'afiyata fid-dunya wal-akhirah.", meaning:"O Allah, I ask You for pardon and well-being in this world and the Hereafter.", source:"Sunan Abi Dawud 5074" },
+      { title:"Good in this world and the Hereafter", arabic:"رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
+        translit:"Rabbana atina fid-dunya hasanatan wa fil-akhirati hasanatan wa qina adhaban-nar.", meaning:"Our Lord, give us good in this world and good in the Hereafter, and protect us from the punishment of the Fire.", source:"Qur'an 2:201" }
+    ]},
+    { title:"Halal provision, knowledge, and guidance", duas:[
+      { title:"Asking for halal provision", arabic:"اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ، وَأَغْنِنِي بِفَضْلِكَ عَمَّنْ سِوَاكَ",
+        translit:"Allahummak-fini bihalalika an haramika, wa aghnini bifadlika amman siwak.", meaning:"O Allah, make what is halal sufficient for me, and make me independent of everyone besides You through Your grace.", source:"Jami' at-Tirmidhi 3563" },
+      { title:"Asking for beneficial knowledge, good provision, and accepted deeds", arabic:"اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا",
+        translit:"Allahumma inni as'aluka 'ilman nafi'an, wa rizqan tayyiban, wa 'amalan mutaqabbalan.", meaning:"O Allah, I ask You for beneficial knowledge, good provision, and deeds that are accepted.", source:"Sunan Ibn Majah 925; also reported in other collections" },
+      { title:"Asking Allah to guide and help", arabic:"اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ",
+        translit:"Allahumma a'inni 'ala dhikrika wa shukrika wa husni 'ibadatik.", meaning:"O Allah, help me to remember You, thank You, and worship You in the best way.", source:"Sunan Abi Dawud 1522" }
+    ]},
+    { title:"Family, peace, and righteousness", duas:[
+      { title:"Asking for comfort through family", arabic:"رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا",
+        translit:"Rabbana hab lana min azwajina wa dhurriyyatina qurrata a'yun, waj'alna lil-muttaqina imama.", meaning:"Our Lord, grant us from our spouses and children comfort to our eyes, and make us an example for the righteous.", source:"Qur'an 25:74" },
+      { title:"Asking for good character", arabic:"اللَّهُمَّ كَمَا أَحْسَنْتَ خَلْقِي فَأَحْسِنْ خُلُقِي",
+        translit:"Allahumma kama ahsanta khalqi fa ahsin khuluqi.", meaning:"O Allah, just as You made my physical form beautiful, make my character beautiful.", source:"Musnad Ahmad; reported with supporting narrations" }
+    ]}
+  ];
+
+  var SCHEDULE_ROWS = [
+    ["Fajr","Prayer, morning adhkar, Qur'an or dua, set intentions"],
+    ["After Fajr","Journal, review priorities, quiet reading"],
+    ["Morning","Gym or exercise, shower, nourishing breakfast"],
+    ["Business Block 1","Key clients, suppliers, urgent decisions, priority work"],
+    ["Dhuhr","Prayer, lunch, short reset"],
+    ["Business Block 2","Orders, shipments, documentation, negotiations, operations"],
+    ["Asr","Prayer, break, payment follow-ups, outstanding tasks"],
+    ["Late afternoon","Focused work, team communication, close open tasks"],
+    ["Maghrib","Prayer, transition away from work where possible"],
+    ["Evening","Family time, conversation, meal, shared activities"],
+    ["Isha","Prayer, Islamic or personal reading"],
+    ["Before sleep","Review tomorrow, gratitude, bedtime adhkar, sleep"]
+  ];
+
+  var HABITS = [
+    { key:"gym", label:"Gym / exercise", note:"Target: 4 sessions", target:4 },
+    { key:"reading", label:"Reading", note:"Target: 20 minutes most days", target:7 },
+    { key:"bizlearn", label:"Business learning", note:"Target: 3 sessions", target:3 },
+    { key:"persdev", label:"Personal development", note:"Target: 2 sessions", target:2 },
+    { key:"quran", label:"Qur'an / Islamic learning", note:"Target: Daily", target:7 },
+    { key:"famtime", label:"Intentional family time", note:"Target: Daily", target:7 },
+    { key:"finreview", label:"Financial review", note:"Target: Weekly", target:1 },
+    { key:"rest", label:"Rest and recovery", note:"Target: Planned time", target:1 }
+  ];
+
+  var SUBS = [
+    { id:"start", label:"Start Here" },
+    { id:"business", label:"Business & Tawakkul" },
+    { id:"payments", label:"Payments" },
+    { id:"growth", label:"Business Growth" },
+    { id:"character", label:"Character" },
+    { id:"health", label:"Health" },
+    { id:"learning", label:"Learning" },
+    { id:"family", label:"Family" },
+    { id:"schedule", label:"Daily Schedule" },
+    { id:"weekly", label:"Weekly Review" },
+    { id:"gratitude", label:"Gratitude" },
+    { id:"clearmind", label:"Clear My Mind" },
+    { id:"duas", label:"Duas" },
+    { id:"protection", label:"Protection Routine" }
+  ];
+
+  var DATED_SECTIONS = ["business","weekly","gratitude","clearmind"];
+  var PAGE_SECTIONS = ["payments","growth","character","health","learning","family"];
+
+  /* ================= STATE ================= */
+  var state = {
+    db:null, ready:false, tab:"start", viewDate:TODAY_KEY,
+    dated:{ business:{}, weekly:{}, gratitude:{}, clearmind:{} },
+    pages:{ payments:{}, growth:{}, character:{}, health:{}, learning:{}, family:{} }
+  };
+
+  var els = { view:document.getElementById("view"), subNav:document.getElementById("subNav"),
+    syncPill:document.getElementById("syncPill"), syncText:document.getElementById("syncText") };
+
+  function setSync(mode){
+    els.syncPill.className = "sync-pill" + (mode==="saving"?" saving":mode==="offline"?" offline":"");
+    els.syncText.textContent = mode==="saving"?"Saving…":mode==="offline"?"This device only":"Saved";
+  }
+
+  /* ================= PERSISTENCE ================= */
+  function getOrSeed(ref, fallback){
+    return ref.get().then(function(snap){
+      if(snap.exists) return snap.data();
+      return ref.set(fallback).then(function(){ return fallback; });
+    });
+  }
+  function saveDated(section, dateKeyStr, data){
+    state.dated[section][dateKeyStr] = data; render();
+    if(!state.db){ setSync("offline"); return; }
+    setSync("saving");
+    state.db.collection(section).doc(dateKeyStr).set(data).then(function(){ setSync("saved"); }).catch(function(){ setSync("offline"); });
+  }
+  function savePage(section, data){
+    state.pages[section] = data; render();
+    if(!state.db){ setSync("offline"); return; }
+    setSync("saving");
+    state.db.collection("pages").doc(section).set(data).then(function(){ setSync("saved"); }).catch(function(){ setSync("offline"); });
+  }
+  function ensureDatedLoaded(section, dateKeyStr, cb){
+    if(state.dated[section][dateKeyStr]){ cb(); return; }
+    if(!state.db){ state.dated[section][dateKeyStr] = {}; cb(); return; }
+    getOrSeed(state.db.collection(section).doc(dateKeyStr), {}).then(function(d){
+      state.dated[section][dateKeyStr] = d || {}; cb();
+    });
+  }
+
+  async function boot(){
+    var db = null;
+    try{ if(window.claude && window.claude.use){ db = await window.claude.use("db"); } }catch(e){ db=null; }
+    state.db = db; state.ready = true;
+    if(!db){ setSync("offline"); render(); return; }
+    PAGE_SECTIONS.forEach(function(section){
+      var ref = db.collection("pages").doc(section);
+      getOrSeed(ref, {}).then(function(d){
+        state.pages[section] = d || {}; render();
+        ref.onSnapshot(function(snap){ if(snap.exists){ state.pages[section] = snap.data(); render(); } });
+      });
+    });
+    ensureDatedLoaded(state.tab==="start"?"business":state.tab, state.viewDate, render);
+    setSync("saved");
+    render();
+  }
+
+  /* ================= RENDER HELPERS ================= */
+  function qBlock(label, section, field, isDated, dateKeyStr, val, rows){
+    var attrs = 'data-field="'+field+'" data-section="'+section+'"'+(isDated?' data-dated="1" data-datekey="'+dateKeyStr+'"':'');
+    return '<div class="q-block"><label class="q-label">'+escapeHtml(label)+'</label>'+
+      '<textarea class="journal-textarea'+(rows==="short"?" short":"")+'" '+attrs+' placeholder="Write here...">'+escapeHtml(val||"")+'</textarea></div>';
+  }
+  function affirmList(items){
+    return '<ul class="rules-list">'+items.map(function(a){ return '<li>'+escapeHtml(a)+'</li>'; }).join('')+'</ul>';
+  }
+  function noteBox(label, text){
+    return '<div class="note-box"><div class="lbl">'+escapeHtml(label)+'</div><p>'+escapeHtml(text)+'</p></div>';
+  }
+  function duaCard(d, idx, total){
+    return '<div class="card affirm-card"><span class="eyebrow">'+escapeHtml(d.title)+(idx?' <span class="dua-num">&middot; '+idx+' of '+total+'</span>':'')+'</span>'+
+      '<div class="dua">'+d.arabic+'</div>'+
+      '<div class="translit">'+escapeHtml(d.translit)+'</div>'+
+      '<div class="meaning">Meaning: '+escapeHtml(d.meaning)+'</div>'+
+      (d.source?'<div class="src">Source: '+escapeHtml(d.source)+'</div>':'')+
+      (d.extra?'<div class="extra">'+escapeHtml(d.extra)+'</div>':'')+
+      '</div>';
+  }
+  function dateNav(section){
+    var canGoNext = state.viewDate < TODAY_KEY;
+    var isToday = state.viewDate === TODAY_KEY;
+    return '<div class="date-nav">'+
+      '<button data-datenav="prev">‹</button>'+
+      '<div class="lbl">'+prettyDate(state.viewDate)+'<span class="sub">'+(isToday?"Today":"")+'</span></div>'+
+      '<button data-datenav="next" '+(canGoNext?'':'disabled')+'>›</button>'+
+      '</div>';
+  }
+  function habitRow(h, doneArr){
+    doneArr = doneArr || [];
+    var dots = '';
+    for(var i=0;i<h.target;i++){
+      var isDone = !!doneArr[i];
+      dots += '<button class="habit-dot'+(isDone?' done':'')+'" data-habitkey="'+h.key+'" data-habitidx="'+i+'" aria-label="'+escapeHtml(h.label)+' '+(i+1)+'"></button>';
+    }
+    return '<div class="habit-row"><div class="hlbl">'+escapeHtml(h.label)+'</div><div class="hnote">'+escapeHtml(h.note)+'</div><div class="habit-toggles">'+dots+'</div></div>';
+  }
+
+  /* ================= TAB RENDERERS ================= */
+  function renderStart(){
+    var html = '';
+    html += '<div class="section-head"><span class="eyebrow">Start Here</span><h1 class="display">How to Use This Journal</h1><p>Use the daily pages every day and the review pages once a week. The dua section is organized by need, not only business.</p></div>';
+    html += '<div class="card quote-card"><p>"Success is not only what I earn. It is also my faith, health, character, peace, and the way I treat the people I love."</p></div>';
+    html += noteBox("My Reminder", "I work with excellence, care for the life Allah has entrusted to me, make dua for every part of my life, and leave the results to Allah.");
+    html += noteBox("Important", "Tawakkul does not mean ignoring problems or waiting without action. Take responsible steps, seek appropriate help, make dua, and trust Allah with the outcome. These duas are not magic formulas or guarantees of a specific result.");
+    html += '<div class="card"><h3>A simple daily rhythm</h3><ul class="rules-list">'+
+      '<li><strong>After Fajr:</strong> Prayer, morning adhkar, selected protection duas, and daily intention.</li>'+
+      '<li><strong>Morning:</strong> Exercise or movement, reading, and the most important business work.</li>'+
+      '<li><strong>Business hours:</strong> Focus on clients, suppliers, shipments, payments, negotiations, and operations in planned blocks.</li>'+
+      '<li><strong>During the day:</strong> Pray on time, eat properly, take breaks, and avoid carrying every problem in your mind.</li>'+
+      '<li><strong>Evening:</strong> Family time, evening adhkar, gratitude, and preparation for tomorrow.</li>'+
+      '<li><strong>Before sleep:</strong> Recite bedtime protection duas, make dua, reduce screens, and rest.</li>'+
+      '</ul></div>';
+    html += '<div class="card"><h3>A realistic start</h3><p style="font-size:13px;line-height:1.6;margin:0">Begin with consistency, not perfection. Keep the obligatory prayers central, exercise about four times a week if suitable, read 20 minutes most days, and give family intentional attention daily.</p></div>';
+    html += '<div class="card final-card"><div class="big">BE AMBITIOUS.<br>BE DISCIPLINED.<br>BE PRESENT.<br>ASK ALLAH FOR PROTECTION.<br>TRUST ALLAH.</div>';
+    html += noteBox("Success Is More Than Money", "Build a business you can be proud of. Protect your health. Keep learning. Speak with kindness. Give your family your presence. Make dua for protection, peace, healing, and goodness in this life and the Hereafter.");
+    html += '<div class="close-line">May Allah protect him from anxiety, harm, illness, debt, dishonest dealings, and hardship.<br>May Allah grant him health, strength, a life filled with goodness, halal provision, barakah, peace, and a beautiful ending.<br>Ameen.</div></div>';
+    return html;
+  }
+
+  function renderBusiness(){
+    var d = state.dated.business[state.viewDate] || {};
+    var html = '<div class="section-head"><span class="eyebrow">Page 1 &middot; Every day</span><h1 class="display">My Business, Wealth, and Tawakkul</h1><p>Complete this page before starting your main business work.</p></div>';
+    html += dateNav("business");
+    html += noteBox("My Financial Goal", "I am working toward $300,000 per month through halal international trade, honest business, valuable service, strong systems, and Allah's barakah. I will pursue this goal with realistic planning, patience, and responsible decisions.");
+    html += '<div class="card"><h2>My business affirmations</h2>'+affirmList(AFFIRM.business)+'</div>';
+    html += '<div class="card"><h2>My business plan for today</h2>';
+    html += qBlock("My three most important business priorities:", "business", "priorities", true, state.viewDate, d.priorities, "short");
+    html += qBlock("Clients or suppliers who need a response:", "business", "clients", true, state.viewDate, d.clients, "short");
+    html += qBlock("Shipments, orders, or operations needing attention:", "business", "shipments", true, state.viewDate, d.shipments, "short");
+    html += qBlock("A decision that requires careful thought:", "business", "decision", true, state.viewDate, d.decision, "short");
+    html += qBlock("One action that can improve the business long term:", "business", "longterm", true, state.viewDate, d.longterm, "short");
+    html += '</div>';
+    return html;
+  }
+
+  function renderPayments(){
+    var p = state.pages.payments || {};
+    var html = '<div class="section-head"><span class="eyebrow">Use when needed</span><h1 class="display">Handle Delayed Payments with Wisdom</h1><p>Use this page when clients owe money or payments are late.</p></div>';
+    html += noteBox("My Reminder", "A delayed payment is a business issue to manage, not a reason to lose my peace. I can be patient and professional while protecting my company.");
+    html += '<div class="card"><h2>Look at the facts</h2>';
+    html += qBlock("Which client owes money, and how much?", "payments", "who", false, null, p.who, "short");
+    html += qBlock("When was payment due, and what was agreed?", "payments", "when", false, null, p.when, "short");
+    html += qBlock("What follow-up or written reminder is needed?", "payments", "followup", false, null, p.followup, "short");
+    html += qBlock("What is the next clear deadline or action?", "payments", "deadline", false, null, p.deadline, "short");
+    html += qBlock("Should I pause further credit or shipments until payment is received?", "payments", "pause", false, null, p.pause, "short");
+    html += '</div>';
+    html += '<div class="card"><h2>My professional response checklist</h2>'+affirmList([
+      "Check invoices, contracts, delivery records, and payment terms.",
+      "Send a clear, respectful written reminder.",
+      "Record the promised payment date and follow up consistently.",
+      "Review credit limits and avoid unnecessary risk.",
+      "Escalate appropriately and seek professional advice if needed."
+    ])+'</div>';
+    html += '<div class="card"><h2>Release the stress</h2>';
+    html += qBlock("What can I control?", "payments", "control", false, null, p.control, "short");
+    html += qBlock("What is outside my control?", "payments", "outside", false, null, p.outside, "short");
+    html += qBlock("What practical action will I take, then stop replaying in my mind?", "payments", "action", false, null, p.action, "short");
+    html += qBlock("What am I asking Allah to make easy?", "payments", "ask", false, null, p.ask, "short");
+    html += '</div>';
+    return html;
+  }
+
+  function renderGrowth(){
+    var p = state.pages.growth || {};
+    var html = '<div class="section-head"><span class="eyebrow">Long-term business</span><h1 class="display">Build a Stronger, More Reliable Business</h1><p>Work on the business, not only inside daily pressure.</p></div>';
+    html += '<div class="card"><h2>Business growth</h2>';
+    html += qBlock("Which products or markets are performing well?", "growth", "performing", false, null, p.performing, "short");
+    html += qBlock("Where are delays, losses, or repeated problems happening?", "growth", "problems", false, null, p.problems, "short");
+    html += qBlock("How can I improve supplier reliability and product quality?", "growth", "suppliers", false, null, p.suppliers, "short");
+    html += qBlock("How can I improve shipping, customs, documentation, and delivery processes?", "growth", "shipping", false, null, p.shipping, "short");
+    html += qBlock("What systems can reduce mistakes and dependence on memory?", "growth", "systems", false, null, p.systems, "short");
+    html += qBlock("What should I delegate, automate, or document?", "growth", "delegate", false, null, p.delegate, "short");
+    html += '</div>';
+    html += '<div class="card"><h2>Financial discipline</h2>';
+    html += qBlock("What money came in this week?", "growth", "income", false, null, p.income, "short");
+    html += qBlock("What money went out, and what expenses are coming?", "growth", "expenses", false, null, p.expenses, "short");
+    html += qBlock("What receivables are overdue?", "growth", "receivables", false, null, p.receivables, "short");
+    html += qBlock("Is enough cash available for operations and commitments?", "growth", "cash", false, null, p.cash, "short");
+    html += qBlock("What risk should I reduce before expanding?", "growth", "risk", false, null, p.risk, "short");
+    html += '</div>';
+    html += noteBox("Business Principle", "Growth needs healthy cash flow, reliable partners, clear agreements, good records, and ethical decisions, not just bigger sales.");
+    return html;
+  }
+
+  function renderCharacter(){
+    var p = state.pages.character || {};
+    var html = '<div class="section-head"><span class="eyebrow">Character</span><h1 class="display">The Man I Am Working to Become</h1><p>Business success should not cost you your character, health, faith, or relationships.</p></div>';
+    html += '<div class="card"><h2>Who I am becoming</h2>'+affirmList(AFFIRM.character)+'</div>';
+    html += '<div class="card"><h2>Personal growth prompts</h2>';
+    html += qBlock("What kind of man do I want to be in my character?", "character", "kind", false, null, p.kind, "short");
+    html += qBlock("What habit is helping me, and what habit is holding me back?", "character", "habit", false, null, p.habit, "short");
+    html += qBlock("What do I need to learn to become a better leader and businessman?", "character", "learn", false, null, p.learn, "short");
+    html += qBlock("Where do I need more patience or better communication?", "character", "patience", false, null, p.patience, "short");
+    html += qBlock("What promise will I keep to myself today?", "character", "promise", false, null, p.promise, "short");
+    html += '</div>';
+    return html;
+  }
+
+  function renderHealth(){
+    var p = state.pages.health || {};
+    var html = '<div class="section-head"><span class="eyebrow">Health and fitness</span><h1 class="display">My Health Is an Amanah</h1><p>Build a healthy routine that supports energy, strength, and long-term well-being.</p></div>';
+    html += '<div class="card"><h2>My health intentions</h2>'+affirmList(AFFIRM.health)+'</div>';
+    html += '<div class="card"><h2>Daily health check-in</h2>';
+    html += qBlock("What movement or workout will I do today?", "health", "movement", false, null, p.movement, "short");
+    html += qBlock("What will I eat to support my energy?", "health", "eat", false, null, p.eat, "short");
+    html += qBlock("Have I had enough water and rest?", "health", "water", false, null, p.water, "short");
+    html += qBlock("How is my stress level, and what can help me reset?", "health", "stress", false, null, p.stress, "short");
+    html += '</div>';
+    html += '<div class="card"><h2>Weekly fitness target</h2>'+affirmList([
+      "Aim for four gym sessions weekly if appropriate for health and schedule.",
+      "Include strength, cardiovascular activity, mobility, and rest.",
+      "Track consistency and how you feel, not only appearance or weight."
+    ])+'</div>';
+    return html;
+  }
+
+  function renderLearning(){
+    var p = state.pages.learning || {};
+    var html = '<div class="section-head"><span class="eyebrow">Learning</span><h1 class="display">Keep Growing Your Mind</h1><p>A strong business needs a growing mind.</p></div>';
+    html += '<div class="card"><h2>My learning habits</h2>'+affirmList(AFFIRM.learning)+'</div>';
+    html += '<div class="card"><h2>Today\'s learning</h2>';
+    html += qBlock("What will I read or study today?", "learning", "study", false, null, p.study, "short");
+    html += qBlock("What useful idea did I learn?", "learning", "idea", false, null, p.idea, "short");
+    html += qBlock("How can I apply it to business or personal life?", "learning", "apply", false, null, p.apply, "short");
+    html += qBlock("What topic should I study next?", "learning", "next", false, null, p.next, "short");
+    html += '</div>';
+    html += '<div class="card"><h2>Weekly learning target</h2>'+affirmList([
+      "Read 20 minutes most days.",
+      "Complete three focused business-learning sessions.",
+      "Complete two personal-development sessions.",
+      "Keep notes on lessons and actions."
+    ])+'</div>';
+    return html;
+  }
+
+  function renderFamily(){
+    var p = state.pages.family || {};
+    var html = '<div class="section-head"><span class="eyebrow">Family</span><h1 class="display">Be Present, Not Only a Provider</h1><p>Providing matters, but loved ones also need attention, kindness, communication, and presence.</p></div>';
+    html += '<div class="card"><h2>Being present</h2>'+affirmList(AFFIRM.family)+'</div>';
+    html += '<div class="card"><h2>Family check-in</h2>';
+    html += qBlock("How can I show care to my family today?", "family", "show", false, null, p.show, "short");
+    html += qBlock("Who needs me to listen or give attention?", "family", "who", false, null, p.who, "short");
+    html += qBlock("Is there something I need to communicate calmly?", "family", "communicate", false, null, p.communicate, "short");
+    html += qBlock("What small moment can I make meaningful today?", "family", "moment", false, null, p.moment, "short");
+    html += '</div>';
+    html += noteBox("Remember", "Your family needs more than financial provision. Your time, attention, patience, and emotional presence matter too.");
+    return html;
+  }
+
+  function renderSchedule(){
+    var html = '<div class="section-head"><span class="eyebrow">A flexible template</span><h1 class="display">A Balanced Daily Schedule</h1><p>Adjust around actual prayer times, time zones, business demands, and family needs.</p></div>';
+    html += '<div class="card" style="padding:10px"><table class="sched-table"><thead><tr><th>Time / Block</th><th>Focus</th></tr></thead><tbody>';
+    SCHEDULE_ROWS.forEach(function(r){ html += '<tr><td>'+escapeHtml(r[0])+'</td><td>'+escapeHtml(r[1])+'</td></tr>'; });
+    html += '</tbody></table></div>';
+    html += '<div class="card"><p style="font-size:12.5px;line-height:1.6;margin:0;color:var(--muted)">Prayer times change through the year. Use the actual local prayer times. If business spans time zones, set communication windows so work does not take over the whole day.</p></div>';
+    return html;
+  }
+
+  function renderWeekly(){
+    var d = state.dated.weekly[state.viewDate] || {};
+    var habits = d.habits || {};
+    var html = '<div class="section-head"><span class="eyebrow">Once a week</span><h1 class="display">My Weekly Habit Plan &amp; Review</h1><p>Check off habits as you go, then review the whole picture once a week — not only sales and money.</p></div>';
+    html += dateNav("weekly");
+    html += '<div class="card"><h2>My weekly habit plan</h2>';
+    HABITS.forEach(function(h){ html += habitRow(h, habits[h.key]); });
+    html += '</div>';
+    html += '<div class="card"><h2>My weekly priorities</h2>';
+    html += qBlock("My most important business goal:", "weekly", "goalbiz", true, state.viewDate, d.goalbiz, "short");
+    html += qBlock("My health goal:", "weekly", "goalhealth", true, state.viewDate, d.goalhealth, "short");
+    html += qBlock("My learning goal:", "weekly", "goallearn", true, state.viewDate, d.goallearn, "short");
+    html += qBlock("How I will be present for family:", "weekly", "goalfamily", true, state.viewDate, d.goalfamily, "short");
+    html += '</div>';
+    html += '<div class="card"><h2>Business review</h2>';
+    html += qBlock("What moved forward this week?", "weekly", "moved", true, state.viewDate, d.moved, "short");
+    html += qBlock("Which payments are outstanding, and what is the next follow-up?", "weekly", "outstanding", true, state.viewDate, d.outstanding, "short");
+    html += qBlock("What shipment, supplier, or client issue needs attention?", "weekly", "issue", true, state.viewDate, d.issue, "short");
+    html += qBlock("What opportunity deserves careful consideration?", "weekly", "opportunity", true, state.viewDate, d.opportunity, "short");
+    html += qBlock("What risk or repeated problem should I address?", "weekly", "riskrepeat", true, state.viewDate, d.riskrepeat, "short");
+    html += '</div>';
+    html += '<div class="card"><h2>Life review</h2>';
+    html += qBlock("How did I care for my health and fitness?", "weekly", "lifehealth", true, state.viewDate, d.lifehealth, "short");
+    html += qBlock("What did I read or learn?", "weekly", "liflearn", true, state.viewDate, d.liflearn, "short");
+    html += qBlock("How was my communication and patience?", "weekly", "lifcomm", true, state.viewDate, d.lifcomm, "short");
+    html += qBlock("Did my family receive my time and attention?", "weekly", "liffam", true, state.viewDate, d.liffam, "short");
+    html += qBlock("What should I change next week?", "weekly", "change", true, state.viewDate, d.change, "short");
+    html += '</div>';
+    html += '<div class="card"><h2>Next week\'s plan</h2>';
+    html += qBlock("Three main priorities:", "weekly", "nextpriorities", true, state.viewDate, d.nextpriorities, "short");
+    html += qBlock("One thing I will stop doing:", "weekly", "stop", true, state.viewDate, d.stop, "short");
+    html += qBlock("One thing I will continue doing:", "weekly", "continue", true, state.viewDate, d.continue_, "short");
+    html += '</div>';
+    return html;
+  }
+
+  function renderGratitude(){
+    var d = state.dated.gratitude[state.viewDate] || {};
+    var html = '<div class="section-head"><span class="eyebrow">Evening &middot; Every day</span><h1 class="display">Gratitude and Daily Review</h1><p>Complete this page at the end of the day without judging yourself.</p></div>';
+    html += dateNav("gratitude");
+    html += '<div class="card"><h2>Alhamdulillah</h2>';
+    html += qBlock("Three things I am grateful for today:", "gratitude", "g1", true, state.viewDate, d.g1, "short");
+    html += qBlock("One thing that went well in business:", "gratitude", "g2", true, state.viewDate, d.g2, "short");
+    html += qBlock("One person I appreciate:", "gratitude", "g3", true, state.viewDate, d.g3, "short");
+    html += qBlock("A blessing I do not want to take for granted:", "gratitude", "g4", true, state.viewDate, d.g4, "short");
+    html += '</div>';
+    html += '<div class="card"><h2>Review without judgment</h2>';
+    html += qBlock("What did I complete today?", "gratitude", "complete", true, state.viewDate, d.complete, "short");
+    html += qBlock("What could I handle better tomorrow?", "gratitude", "better", true, state.viewDate, d.better, "short");
+    html += qBlock("Did I protect time for prayer, health, and family?", "gratitude", "protect", true, state.viewDate, d.protect, "short");
+    html += qBlock("What did I learn about myself today?", "gratitude", "learnself", true, state.viewDate, d.learnself, "short");
+    html += '</div>';
+    return html;
+  }
+
+  function renderClearMind(){
+    var d = state.dated.clearmind[state.viewDate] || {};
+    var html = '<div class="section-head"><span class="eyebrow">Use when needed</span><h1 class="display">Clear My Mind and Return to Tawakkul</h1><p>Use this page when business pressure or personal worries are occupying your thoughts.</p></div>';
+    html += dateNav("clearmind");
+    html += '<div class="card"><h2>Empty what is on my mind</h2>';
+    html += qBlock("What is worrying me right now?", "clearmind", "worrying", true, state.viewDate, d.worrying, "short");
+    html += qBlock("What am I afraid might happen?", "clearmind", "afraid", true, state.viewDate, d.afraid, "short");
+    html += qBlock("What facts do I know, and what am I only assuming?", "clearmind", "facts", true, state.viewDate, d.facts, "short");
+    html += qBlock("What is one practical step I can take?", "clearmind", "step", true, state.viewDate, d.step, "short");
+    html += '</div>';
+    html += '<div class="card"><h2>Choose what to carry</h2>';
+    html += qBlock("What is within my responsibility?", "clearmind", "responsibility", true, state.viewDate, d.responsibility, "short");
+    html += qBlock("What is outside my control?", "clearmind", "outside", true, state.viewDate, d.outside, "short");
+    html += qBlock("Who can help or advise me?", "clearmind", "helpers", true, state.viewDate, d.helpers, "short");
+    html += qBlock("What will I stop replaying tonight?", "clearmind", "replay", true, state.viewDate, d.replay, "short");
+    html += '</div>';
+    html += noteBox("Tawakkul", "I will take the means available to me, act with integrity, and trust Allah with the result. If anxiety continues or affects daily life, I can also seek appropriate professional support.");
+    return html;
+  }
+
+  function renderDuas(){
+    var html = '<div class="section-head"><span class="eyebrow">Dua collection</span><h1 class="display">Duas for Every Need</h1><p>Organized by need, not only business. Read with attention and understanding — you can also ask Allah in your own words.</p></div>';
+    DUA_GROUPS.forEach(function(g){
+      html += '<div class="group-title">'+escapeHtml(g.title)+'</div>';
+      g.duas.forEach(function(d){ html += duaCard(d); });
+    });
+    return html;
+  }
+
+  function renderProtection(){
+    var html = '<div class="section-head"><span class="eyebrow">Daily protection routine</span><h1 class="display">A Simple Morning, Evening, and Bedtime Routine</h1><p>A manageable routine is better than a long list that becomes difficult to maintain.</p></div>';
+    html += '<div class="card"><h2>Morning and evening</h2>'+affirmList([
+      "Recite Ayat al-Kursi.",
+      "Recite Surah Al-Ikhlas, Al-Falaq, and An-Nas three times.",
+      "Say the protection dua: A'udhu bi kalimatillahit-tammati min sharri ma khalaq.",
+      "Make personal dua for faith, health, family, lawful provision, and protection."
+    ])+'</div>';
+    html += '<div class="card"><h2>Before sleep</h2>'+affirmList([
+      "Recite Ayat al-Kursi.",
+      "Recite Al-Ikhlas, Al-Falaq, and An-Nas, then blow lightly into the hands and wipe over the body as taught in the Sunnah.",
+      "Read the last two verses of Surah Al-Baqarah if able.",
+      "Make dua, forgive where possible, and settle the mind for rest."
+    ])+'</div>';
+    html += noteBox("Keep It Sustainable", "He does not need to read every dua in this book every day. Choose a consistent morning and evening routine, learn the meanings, and add more gradually.");
+    return html;
+  }
+
+  var RENDERERS = { start:renderStart, business:renderBusiness, payments:renderPayments, growth:renderGrowth,
+    character:renderCharacter, health:renderHealth, learning:renderLearning, family:renderFamily,
+    schedule:renderSchedule, weekly:renderWeekly, gratitude:renderGratitude, clearmind:renderClearMind,
+    duas:renderDuas, protection:renderProtection };
+
+  /* ================= MAIN RENDER ================= */
+  function render(){
+    els.subNav.innerHTML = SUBS.map(function(t){ return '<button class="sub-pill'+(state.tab===t.id?' active':'')+'" data-tab="'+t.id+'">'+t.label+'</button>'; }).join('');
+    var fn = RENDERERS[state.tab] || renderStart;
+    els.view.innerHTML = fn();
+    wire();
+  }
+
+  function wire(){
+    els.subNav.querySelectorAll('[data-tab]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var tab = btn.getAttribute('data-tab');
+        state.tab = tab;
+        if(DATED_SECTIONS.indexOf(tab)!==-1){ ensureDatedLoaded(tab, state.viewDate, render); }
+        else render();
+      });
+    });
+    els.view.querySelectorAll('[data-datenav]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var dir = btn.getAttribute('data-datenav');
+        var newDate = addDays(state.viewDate, dir==="prev"?-1:1);
+        if(newDate > TODAY_KEY) return;
+        state.viewDate = newDate;
+        ensureDatedLoaded(state.tab, state.viewDate, render);
+      });
+    });
+
+    els.view.querySelectorAll('[data-habitkey]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var key = btn.getAttribute('data-habitkey');
+        var idx = parseInt(btn.getAttribute('data-habitidx'), 10);
+        var dk = state.viewDate;
+        var cur = Object.assign({}, state.dated.weekly[dk] || {});
+        var habits = Object.assign({}, cur.habits || {});
+        var arr = (habits[key] || []).slice();
+        arr[idx] = !arr[idx];
+        habits[key] = arr;
+        cur.habits = habits;
+        saveDated("weekly", dk, cur);
+      });
+    });
+
+    els.view.querySelectorAll('textarea[data-field]').forEach(function(ta){
+      ta.addEventListener('change', function(){
+        var section = ta.getAttribute('data-section');
+        var field = ta.getAttribute('data-field');
+        if(ta.hasAttribute('data-dated')){
+          var dk = ta.getAttribute('data-datekey');
+          var obj = Object.assign({}, state.dated[section][dk] || {});
+          obj[field] = ta.value;
+          saveDated(section, dk, obj);
+        } else {
+          var pobj = Object.assign({}, state.pages[section] || {});
+          pobj[field] = ta.value;
+          savePage(section, pobj);
+        }
+      });
+    });
+  }
+
+  render();
+  boot();
+})();
+</script>
+
+</body></html>
